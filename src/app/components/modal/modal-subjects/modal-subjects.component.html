@@ -1,0 +1,55 @@
+<div class="modal-container">
+  <div class="modal-header">
+    <h2>Müəllimlik</h2>
+    <button mat-icon-button (click)="onClose()">X</button>
+  </div>
+  <div class="modal-content">
+    <div class="subjects-section">
+      <h2>Maraqlı Fənnlər</h2>
+      <ul class="subjects-list">
+        <li *ngFor="let subject of interestSubjects" class="subject-item">
+          <span class="subject-name" (click)="toggleSubject(subject)">{{
+            subject.name
+          }}</span>
+          <button class="toggle-btn" (click)="toggleSubject(subject)">
+            {{ subject.selected ? "−" : "+" }}
+          </button>
+        </li>
+      </ul>
+    </div>
+    <div class="exams-section">
+      <h2>İmtahan Nəticələri</h2>
+      <ul class="subjects-list">
+        <li *ngFor="let exam of examSubjects" class="subject-item">
+          <span class="subject-name">{{ exam.subject.name }}</span>
+          <div class="exam-controls">
+            <input
+              type="number"
+              class="score-input"
+              max="100"
+              min="0"
+              [(ngModel)]="exam.score"
+              [disabled]="exam.added"
+              placeholder="Bal"
+            />
+            <button
+              *ngIf="!exam.added"
+              class="toggle-btn"
+              (click)="addExam(exam)"
+              [disabled]="!exam.score"
+            >
+              +
+            </button>
+            <button
+              *ngIf="exam.added"
+              class="toggle-btn"
+              (click)="removeExam(exam)"
+            >
+              −
+            </button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

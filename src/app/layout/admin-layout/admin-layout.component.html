@@ -1,0 +1,19 @@
+<div class="admin-layout">
+    <nav class="admin-navbar">
+        <div class="navbar-brand">
+            Admin Panel
+        </div>
+        <ul class="nav-links">
+            <li><a routerLink="/admin/students" routerLinkActive="active">Öğrenciler</a></li>
+            <li><a routerLink="/admin/personalities" routerLinkActive="active">Kişilik Tipleri</a></li>
+            <li><a routerLink="/admin/specialities" routerLinkActive="active">Uzmanlık Alanları</a></li>
+            <li><a routerLink="/admin/subjects" routerLinkActive="active">Dersler</a></li>
+            <li><a routerLink="/admin/exams" routerLinkActive="active">Sınavlar</a></li>
+            <li><a routerLink="/admin/universities" routerLinkActive="active">Üniversiteler</a></li>
+        </ul>
+    </nav>
+    
+    <div class="admin-content">
+        <router-outlet></router-outlet>
+    </div>
+</div> 

@@ -1,0 +1,18 @@
+<div class="modal-container">
+  <div class="modal-header">
+    <h2>Şəxsiyyət</h2>
+    <button mat-icon-button (click)="onClose()">X</button>
+  </div>
+  <div class="modal-content">
+    <select [(ngModel)]="selectedPersonality" >
+      <option [ngValue]="null">Seçiniz</option>
+      <option *ngFor="let personality of personalities" [ngValue]="personality">
+        {{ personality.type }}
+      </option>
+    </select>
+  </div>
+  <div class="modal-actions">
+    <button mat-raised-button color="primary" (click)="onSave()" >Yadda saxla</button>
+    <button mat-raised-button color="primary" (click)="onApply()" >Tətbiq et</button>
+  </div>
+</div>
