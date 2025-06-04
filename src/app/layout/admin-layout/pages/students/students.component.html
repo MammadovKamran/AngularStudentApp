@@ -3,7 +3,54 @@
     <div class="content">
         <div class="card">
             <h2>Students List</h2>
-            <!-- Students list will be here -->
+            <button mat-raised-button color="primary" (click)="openAddStudentModal()">
+              <mat-icon>person_add</mat-icon> Add Student
+            </button>
+            <table class="students-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Group</th>
+                        <th>Budget</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let student of students">
+                        <td>{{ student.id }}</td>
+                        <td>{{ student.name }}</td>
+                        <td>{{ student.group }}</td>
+                        <td>{{ student.budget }}</td>
+                        <td>
+                          <div class="action-buttons">
+                            <button mat-icon-button color="primary" matTooltip="Edit" (click)="editStudent(student)">
+                              <mat-icon color="primary">edit</mat-icon>
+                            </button>
+                            <button mat-icon-button color="warn" matTooltip="Delete" (click)="deleteStudent(student.id)">
+                              <mat-icon color="warn">delete</mat-icon>
+                            </button>
+                            <button mat-icon-button color="accent" matTooltip="Assign Group" (click)="openGroupModal(student)">
+                              <mat-icon>group</mat-icon>
+                            </button>
+                            <button mat-icon-button color="accent" matTooltip="Update Budget" (click)="openBudgetModal(student)">
+                              <mat-icon>account_balance_wallet</mat-icon>
+                            </button>
+                            <button mat-icon-button color="accent" matTooltip="Manage Subjects" (click)="openSubjectModal(student)">
+                              <mat-icon>menu_book</mat-icon>
+                            </button>
+                            <button mat-icon-button color="accent" matTooltip="Manage Exams" (click)="openExamModal(student)">
+                              <mat-icon>assignment</mat-icon>
+                            </button>
+                            <button mat-icon-button color="accent" matTooltip="Manage Personality" (click)="openPersonalityModal(student)">
+                              <mat-icon>psychology</mat-icon>
+                            </button>
+                          </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
-</div> 
+</div>
+<!-- Modals ve formlar burada olacak --> 

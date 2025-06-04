@@ -3,7 +3,39 @@
     <div class="content">
         <div class="card">
             <h2>Kişilik Tipleri Listesi</h2>
-            <!-- Kişilik tipleri listesi buraya gelecek -->
+            <div class="add-personality-row">
+              <button mat-raised-button color="primary" (click)="openAddPersonalityModal()">
+                <mat-icon>person_add</mat-icon> Kişilik Tipi Ekle
+              </button>
+            </div>
+            <table class="personalities-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Ad</th>
+                        <th>Açıklama</th>
+                        <th>İşlemler</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let personality of personalities">
+                        <td>{{ personality.id }}</td>
+                        <td>{{ personality.name }}</td>
+                        <td>{{ personality.description }}</td>
+                        <td>
+                          <div class="action-buttons">
+                            <button mat-icon-button color="primary" matTooltip="Düzenle" (click)="editPersonality(personality)">
+                              <mat-icon>edit</mat-icon>
+                            </button>
+                            <button mat-icon-button color="warn" matTooltip="Sil" (click)="deletePersonality(personality.id)">
+                              <mat-icon>delete</mat-icon>
+                            </button>
+                          </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
-</div> 
+</div>
+<!-- Modal ve formlar burada olacak --> 

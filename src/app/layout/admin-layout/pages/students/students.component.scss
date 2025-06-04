@@ -1,22 +1,101 @@
+.action-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.action-buttons button {
+    border-radius: 50%;
+    background: #f5f6fa;
+    transition: background 0.2s;
+}
+
+.action-buttons button:hover {
+    background: #e0e0e0;
+}
+
 .students-container {
     padding: 20px;
 
     h1 {
         margin-bottom: 30px;
         color: #2c3e50;
+        font-weight: 700;
+        letter-spacing: 1px;
     }
 
     .content {
         .card {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            background: #fff;
+            padding: 32px 24px;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(44, 62, 80, 0.08);
 
             h2 {
                 color: #2c3e50;
-                margin-bottom: 15px;
+                margin-bottom: 20px;
+                font-size: 1.3rem;
+                font-weight: 600;
+            }
+
+            .students-table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 16px;
+                th, td {
+                    padding: 12px 10px;
+                    text-align: left;
+                }
+                th {
+                    background: #f5f6fa;
+                    color: #34495e;
+                    font-weight: 600;
+                }
+                tr {
+                    border-bottom: 1px solid #ececec;
+                }
+                tr:last-child {
+                    border-bottom: none;
+                }
+                td button {
+                    margin-bottom: 0;
+                }
+            }
+
+            button {
+                margin-bottom: 12px;
             }
         }
     }
+} 
+td button {
+    margin-right: 6px;
+    margin-bottom: 4px;
+  } 
+
+.add-student-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 16px;
+}
+
+.add-student-row button {
+  margin-left: 16px;
+} 
+
+.students-table th, .students-table td {
+  vertical-align: middle;
+}
+.students-table th {
+  background: #f5f6fa;
+  color: #34495e;
+  font-weight: 600;
+  font-size: 1rem;
+}
+.students-table tr {
+  border-bottom: 1px solid #ececec;
+  transition: background 0.2s;
+}
+.students-table tr:hover {
+  background: #f0f4ff;
 } 
