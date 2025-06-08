@@ -1,0 +1,21 @@
+<h2 mat-dialog-title>{{ data.title }}</h2>
+<div mat-dialog-content>
+  <div *ngIf="data.type === 'add' || data.type === 'edit'">
+    <mat-form-field appearance="fill">
+      <mat-label>Ders Adı</mat-label>
+      <input matInput [(ngModel)]="data.subject.name">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Ders Kodu</mat-label>
+      <input matInput [(ngModel)]="data.subject.code">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Açıklama</mat-label>
+      <textarea matInput [(ngModel)]="data.subject.description" rows="4"></textarea>
+    </mat-form-field>
+  </div>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="close()">İptal</button>
+  <button mat-raised-button color="primary" (click)="save()">Kaydet</button>
+</div> 

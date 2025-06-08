@@ -1,38 +1,60 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { PersonalityModalComponent } from './modal/personality-modal.component';
 import { CommonModule } from '@angular/common';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatDialogTitle } from '@angular/material/dialog';
-import { MatDialogContent } from '@angular/material/dialog';
-import { MatDialogActions } from '@angular/material/dialog';    
-import { MatCardModule } from '@angular/material/card';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatTableModule } from '@angular/material/table';
+
 @Component({
-  selector: 'app-admin-personalities',
+  selector: 'app-personalities',
   templateUrl: './personalities.component.html',
   styleUrls: ['./personalities.component.scss'],
-  standalone:true,
-  imports:[CommonModule,MatDialogModule,MatFormFieldModule,MatInputModule,FormsModule,MatButtonModule,MatIconModule,MatDialogTitle,MatDialogContent,MatDialogActions,MatCardModule]
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    MatIconModule,
+    MatTooltipModule,
+    MatTableModule
+  ]
 })
 export class PersonalitiesComponent {
-  personalities = [
-    { id: 1, name: 'Analytical', description: 'Logical and detail-oriented.' },
-    { id: 2, name: 'Amiable', description: 'Friendly and supportive.' },
-    { id: 3, name: 'Driver', description: 'Results-oriented and decisive.' }
-  ];
+  personalities: any[] = [];
 
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog) {}
 
   openAddPersonalityModal() {
-    // Modal açma işlemi (PersonalityModalComponent ile)
+    const dialogRef = this.dialog.open(PersonalityModalComponent, {
+      width: '400px',
+      data: { type: 'add', title: 'Kişilik Tipi Ekle', personality: { name: '', description: '' } }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.personality) {
+        this.personalities.push({
+          id: this.personalities.length + 1,
+          ...result.personality
+        });
+      }
+    });
   }
 
   editPersonality(personality: any) {
-    // Modal açma işlemi (PersonalityModalComponent ile)
+    const dialogRef = this.dialog.open(PersonalityModalComponent, {
+      width: '400px',
+      data: { type: 'edit', title: 'Kişilik Tipi Düzenle', personality: { ...personality } }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.personality) {
+        const index = this.personalities.findIndex(p => p.id === personality.id);
+        if (index !== -1) {
+          this.personalities[index] = { ...this.personalities[index], ...result.personality };
+        }
+      }
+    });
   }
 
   deletePersonality(id: number) {

@@ -9,19 +9,34 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
-  selector: 'app-student-modal',
-  templateUrl: 'student-modal.component.html',
-  styleUrls: ['./student-modal.component.scss'],
-  standalone:true,
-  imports:[CommonModule,MatDialogModule,MatFormFieldModule,MatInputModule,FormsModule,MatButtonModule,MatIconModule,MatDialogTitle,MatDialogContent,MatDialogActions]
+  selector: 'app-personality-modal',
+  templateUrl: './personality-modal.component.html',
+  styleUrls: ['./personality-modal.component.scss'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    MatButtonModule,
+    MatIconModule,
+    MatDialogTitle,
+    MatDialogContent,
+    MatDialogActions
+  ]
 })
-export class StudentModalComponent {
+export class PersonalityModalComponent {
   constructor(
-    public dialogRef: MatDialogRef<StudentModalComponent>,
+    public dialogRef: MatDialogRef<PersonalityModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
   close(): void {
     this.dialogRef.close();
+  }
+
+  save(): void {
+    this.dialogRef.close({ personality: this.data.personality });
   }
 } 

@@ -3,7 +3,37 @@
     <div class="content">
         <div class="card">
             <h2>Dersler Listesi</h2>
-            <!-- Dersler listesi buraya gelecek -->
+            <div class="add-subject-row">
+              <button mat-raised-button color="primary" (click)="openAddSubjectModal()">
+                <mat-icon>add_circle</mat-icon> Ders Ekle
+              </button>
+            </div>
+            <table class="subjects-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Dərs Adı</th>
+                        <th>Əməliyyatlar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let subject of subjects">
+                        <td>{{ subject.id }}</td>
+                        <td>{{ subject.name }}</td>
+                        <td>
+                          <div class="action-buttons">
+                            <button mat-icon-button color="primary" matTooltip="Edit" (click)="editSubject(subject)">
+                              <mat-icon>edit</mat-icon>
+                            </button>
+                            <button mat-icon-button color="warn" matTooltip="Delete" (click)="deleteSubject(subject.id)">
+                              <mat-icon>delete</mat-icon>
+                            </button>
+                          </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
-</div> 
+</div>
+<!-- Modal ve formlar burada olacak --> 

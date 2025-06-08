@@ -4,20 +4,24 @@
   <div *ngIf="data.type === 'add' || data.type === 'edit'">
     <mat-form-field appearance="fill">
       <mat-label>Name</mat-label>
-      <input matInput [(ngModel)]="data.student.name">
+      <input matInput [(ngModel)]="data.student.firstName">
     </mat-form-field>
     <mat-form-field appearance="fill">
+      <mat-label>Surname</mat-label>
+      <input matInput [(ngModel)]="data.student.lastName">
+    </mat-form-field>
+    <!-- <mat-form-field appearance="fill">
       <mat-label>Group</mat-label>
       <input matInput [(ngModel)]="data.student.group">
-    </mat-form-field>
-    <mat-form-field appearance="fill">
+    </mat-form-field> -->
+    <!-- <mat-form-field appearance="fill">
       <mat-label>Budget</mat-label>
       <input matInput type="number" [(ngModel)]="data.student.budget">
-    </mat-form-field>
+    </mat-form-field> -->
   </div>
   <!-- Diğer işlemler için de benzer şekilde alanlar eklenebilir -->
 </div>
 <div mat-dialog-actions align="end">
   <button mat-button (click)="close()">Cancel</button>
-  <button mat-raised-button color="primary" (click)="dialogRef.close(data)">Save</button>
+  <button mat-raised-button color="primary" (click)="save()">Save</button>
 </div> 

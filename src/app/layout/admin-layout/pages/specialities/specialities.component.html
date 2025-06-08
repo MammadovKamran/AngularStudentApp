@@ -1,9 +1,39 @@
 <div class="specialities-container">
-    <h1>Uzmanlık Alanları Yönetimi</h1>
+    <h1>İxtisaslar</h1>
     <div class="content">
         <div class="card">
-            <h2>Uzmanlık Alanları Listesi</h2>
-            <!-- Uzmanlık alanları listesi buraya gelecek -->
+            <h2>İxtisaslar Siyahısı</h2>
+            <div class="add-speciality-row">
+              <button mat-raised-button color="primary" (click)="openAddSpecialityModal()">
+                <mat-icon>add_circle</mat-icon> Ixtisas əlavə et
+              </button>
+            </div>
+            <table class="specialities-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Ad</th>
+                        <th>Əməliyyatlar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let speciality of specialities">
+                        <td>{{ speciality.id }}</td>
+                        <td>{{ speciality.name }}</td>
+                        <td>
+                          <div class="action-buttons">
+                            <button mat-icon-button color="primary" matTooltip="Düzenle" (click)="editSpeciality(speciality)">
+                              <mat-icon>edit</mat-icon>
+                            </button>
+                            <button mat-icon-button color="warn" matTooltip="Sil" (click)="deleteSpeciality(speciality.id)">
+                              <mat-icon>delete</mat-icon>
+                            </button>
+                          </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
-</div> 
+</div>
+<!-- Modal ve formlar burada olacak --> 

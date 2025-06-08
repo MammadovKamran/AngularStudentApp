@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { StudentModalComponent } from './student-modal.component';
+import { StudentModalComponent } from './modal/student-modal.component';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -11,6 +11,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { StudentsService } from '../../../../services/model/students.service';
 
 
 @Component({
@@ -23,13 +24,22 @@ import { MatSortModule } from '@angular/material/sort';
   ]
 })
 export class StudentsComponent {
-  students = [
-    { id: 1, name: 'Ali Veli', group: 'A', budget: 1000 },
-    { id: 2, name: 'Ayşe Yılmaz', group: 'B', budget: 1200 },
-    { id: 3, name: 'Mehmet Can', group: 'A', budget: 900 }
-  ];
+  // students = [
+  //   { id: 1, name: 'Kamran',surname:'Məmmədov', group: 'A', budget: 1000 },
+  //   { id: 2, name: 'Rəşad', surname:'Məmmədov', group: 'B', budget: 1200 },
+  //   { id: 3, name: 'Vəli', surname:'Məmmədov', group: 'A', budget: 900 }
+  // ];
+  students: any[] = [];
 
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog, private studentsService: StudentsService) { }
+
+  ngOnInit(): void {
+    this.studentsService.getStudents().subscribe(data => {
+      this.students = data;
+      console.log(this.students);
+      
+    });
+  }
 
   openAddStudentModal() {
     const dialogRef = this.dialog.open(StudentModalComponent, {
@@ -53,11 +63,11 @@ export class StudentsComponent {
       data: { type: 'edit', title: 'Edit Student', student: { ...student } }
     });
     dialogRef.afterClosed().subscribe(result => {
-      if (result && result.student) {
-        // Öğrenci güncelle
-        const idx = this.students.findIndex(s => s.id === student.id);
-        if (idx > -1) this.students[idx] = { ...student, ...result.student };
-      }
+          if (result && result.student) {
+            this.studentsService.updateStudent(student.id, result.student).subscribe(data => {
+              console.log(data);
+            });
+          }
     });
   }
 

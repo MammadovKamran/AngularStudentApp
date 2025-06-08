@@ -24,10 +24,6 @@ import { UniversitiesComponent } from './admin-layout/pages/universities/univers
     SpinnerComponent,
     NavbarComponent,
     AdminLayoutComponent,
-    SpecialitiesComponent,
-    SubjectsComponent,
-    ExamsComponent,
-    UniversitiesComponent
   ],
   imports: [
     CommonModule,
@@ -42,10 +38,6 @@ import { UniversitiesComponent } from './admin-layout/pages/universities/univers
     SpinnerComponent,
     NavbarComponent,
     AdminLayoutComponent,
-    SpecialitiesComponent,
-    SubjectsComponent,
-    ExamsComponent,
-    UniversitiesComponent
   ]
 })
 export class LayoutModule { }

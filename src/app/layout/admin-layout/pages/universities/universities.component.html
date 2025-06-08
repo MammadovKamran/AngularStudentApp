@@ -1,9 +1,41 @@
 <div class="universities-container">
-    <h1>Üniversiteler Yönetimi</h1>
+    <h1>Universitetlər İdarəetməsi</h1>
     <div class="content">
         <div class="card">
-            <h2>Üniversiteler Listesi</h2>
-            <!-- Üniversiteler listesi buraya gelecek -->
+            <h2>Universitetlər Siyahısı</h2>
+            <div class="add-university-row">
+              <button mat-raised-button color="primary" (click)="openAddUniversityModal()">
+                <mat-icon>add_circle</mat-icon> Universitet Əlavə Et
+              </button>
+            </div>
+            <table class="universities-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Ad</th>
+                        <th>Şəhər</th>
+                        <th>Əməliyyatlar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let university of universities">
+                        <td>{{ university.id }}</td>
+                        <td>{{ university.name }}</td>
+                        <td>{{ university.city }}</td>
+                        <td>
+                          <div class="action-buttons">
+                            <button mat-icon-button color="primary" matTooltip="Redaktə" (click)="editUniversity(university)">
+                              <mat-icon>edit</mat-icon>
+                            </button>
+                            <button mat-icon-button color="warn" matTooltip="Sil" (click)="deleteUniversity(university.id)">
+                              <mat-icon>delete</mat-icon>
+                            </button>
+                          </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
-</div> 
+</div>
+<!-- Modal və formlar burada olacaq --> 

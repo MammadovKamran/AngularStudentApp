@@ -27,7 +27,7 @@ export class ModalSpecialitiesComponent {
   onSave() {
     this.specialitiesService.addSpeciality(this.selectedSpeciality).subscribe({
       next: (response) => {
-        this.snackBar.open('Qrup əlavə edildi!', 'Bağla', {
+        this.snackBar.open('Ixtisas əlavə edildi!', 'Bağla', {
           duration: 3000
         });
         this.dialogRef.close();

@@ -19,8 +19,8 @@
                 <tbody>
                     <tr *ngFor="let student of students">
                         <td>{{ student.id }}</td>
-                        <td>{{ student.name }}</td>
-                        <td>{{ student.group }}</td>
+                        <td>{{ student.firstName }} {{ student.lastName }}</td>
+                        <td>{{ student.groupId }}</td>
                         <td>{{ student.budget }}</td>
                         <td>
                           <div class="action-buttons">

@@ -19,4 +19,14 @@ export class SpecialitiesService {
       }
     );
   }
+  updateSpeciality(id: number, speciality: any) {
+    return this.http.put<any>(`https://localhost:3001/api/Specialities/${id}`, 
+      {
+        name: speciality.name,
+      }
+    );
+  }
+  deleteSpeciality(id: number) {
+    return this.http.delete<any>(`https://localhost:3001/api/Specialities/${id}`);
+  }
 }

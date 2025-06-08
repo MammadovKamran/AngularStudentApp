@@ -1,9 +1,43 @@
 <div class="exams-container">
-    <h1>Sınavlar Yönetimi</h1>
+    <h1>İmtahanlar İdarəetməsi</h1>
     <div class="content">
         <div class="card">
-            <h2>Sınavlar Listesi</h2>
-            <!-- Sınavlar listesi buraya gelecek -->
+            <h2>İmtahanlar Siyahısı</h2>
+            <div class="add-exam-row">
+              <button mat-raised-button color="primary" (click)="openAddExamModal()">
+                <mat-icon>add_circle</mat-icon> İmtahan Əlavə Et
+              </button>
+            </div>
+            <table class="exams-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Ad</th>
+                        <th>Tarix</th>
+                        <th>Maksimum Bal</th>
+                        <th>Əməliyyatlar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let exam of exams">
+                        <td>{{ exam.id }}</td>
+                        <td>{{ exam.name }}</td>
+                        <td>{{ exam.date | date:'dd.MM.yyyy' }}</td>
+                        <td>{{ exam.maxScore }}</td>
+                        <td>
+                          <div class="action-buttons">
+                            <button mat-icon-button color="primary" matTooltip="Redaktə" (click)="editExam(exam)">
+                              <mat-icon>edit</mat-icon>
+                            </button>
+                            <button mat-icon-button color="warn" matTooltip="Sil" (click)="deleteExam(exam.id)">
+                              <mat-icon>delete</mat-icon>
+                            </button>
+                          </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
-</div> 
+</div>
+<!-- Modal və formlar burada olacaq --> 

@@ -19,6 +19,16 @@ export class PersonalitiesService {
       }
     );
   }
+  updatePersonality(id: number, personality: any) {
+    return this.http.put<any>(`http://localhost:3001/api/Personalities/${id}`, 
+      {
+        type: personality.type,
+      }
+    );
+  }
+  deletePersonality(id: number) {
+    return this.http.delete<any>(`http://localhost:3001/api/Personalities/${id}`);
+  }
   
   applyPersonality(personality: any) {
     return this.http.post<any>('http://localhost:3001/api/Evaluation/personality', 
