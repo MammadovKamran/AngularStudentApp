@@ -3,15 +3,11 @@
   <div *ngIf="data.type === 'add' || data.type === 'edit'">
     <mat-form-field appearance="fill">
       <mat-label>Ad</mat-label>
-      <input matInput [(ngModel)]="data.personality.name">
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-      <mat-label>Açıklama</mat-label>
-      <textarea matInput [(ngModel)]="data.personality.description" rows="4"></textarea>
+      <input matInput [(ngModel)]="data.personality.type">
     </mat-form-field>
   </div>
 </div>
 <div mat-dialog-actions align="end">
-  <button mat-button (click)="close()">İptal</button>
-  <button mat-raised-button color="primary" (click)="save()">Kaydet</button>
+  <button mat-button (click)="close()">İmtina et</button>
+  <button mat-raised-button color="primary" (click)="save()">Yadda saxla</button>
 </div> 

@@ -5,14 +5,25 @@
       <mat-label>İmtahan Adı</mat-label>
       <input matInput [(ngModel)]="data.exam.name">
     </mat-form-field>
+
     <mat-form-field appearance="fill">
-      <mat-label>Tarix</mat-label>
-      <input matInput type="date" [(ngModel)]="data.exam.date">
+      <mat-label>Fənn</mat-label>
+      <mat-select [(ngModel)]="data.exam.subjectId">
+        <mat-option *ngFor="let subject of subjects" [value]="subject.id">
+          {{subject.name}}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
+
     <mat-form-field appearance="fill">
       <mat-label>Maksimum Bal</mat-label>
       <input matInput type="number" [(ngModel)]="data.exam.maxScore">
     </mat-form-field>
+
+    <mat-checkbox [(ngModel)]="data.exam.isBlockExam">
+      Blok İmtahan
+    </mat-checkbox>
+
     <mat-form-field appearance="fill">
       <mat-label>Ətraflı Məlumat</mat-label>
       <textarea matInput [(ngModel)]="data.exam.description" rows="4"></textarea>

@@ -48,10 +48,8 @@ export class StudentsComponent {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.student) {
-        // Öğrenci ekle
-        this.students.push({
-          id: this.students.length + 1,
-          ...result.student
+        this.studentsService.addStudent(result.student).subscribe(data => {
+          this.students.push(data);
         });
       }
     });
@@ -63,50 +61,132 @@ export class StudentsComponent {
       data: { type: 'edit', title: 'Edit Student', student: { ...student } }
     });
     dialogRef.afterClosed().subscribe(result => {
-          if (result && result.student) {
-            this.studentsService.updateStudent(student.id, result.student).subscribe(data => {
-              console.log(data);
-            });
+      if (result && result.student) {
+        this.studentsService.updateStudent(student.id, result.student).subscribe(data => {
+          const index = this.students.findIndex(s => s.id === student.id);
+          if (index !== -1) {
+            this.students[index] = data;
           }
+        });
+      }
     });
   }
 
   deleteStudent(id: number) {
-    this.students = this.students.filter(s => s.id !== id);
+    this.studentsService.deleteStudent(id).subscribe(() => {
+      this.students = this.students.filter(s => s.id !== id);
+    });
   }
 
   openGroupModal(student: any) {
-    this.dialog.open(StudentModalComponent, {
+    const dialogRef = this.dialog.open(StudentModalComponent, {
       width: '400px',
       data: { type: 'group', title: 'Assign Group', student }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.studentsService.groupStudent(student.id).subscribe(data => {
+          const index = this.students.findIndex(s => s.id === student.id);
+          if (index !== -1) {
+            this.students[index] = data;
+          }
+        });
+      }
     });
   }
 
   openBudgetModal(student: any) {
-    this.dialog.open(StudentModalComponent, {
+    const dialogRef = this.dialog.open(StudentModalComponent, {
       width: '400px',
       data: { type: 'budget', title: 'Update Budget', student }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.studentsService.setBudget(result.budget || student.budget).subscribe(data => {
+          const index = this.students.findIndex(s => s.id === student.id);
+          if (index !== -1) {
+            this.students[index] = data;
+          }
+        });
+      }
     });
   }
 
   openSubjectModal(student: any) {
-    this.dialog.open(StudentModalComponent, {
+    const dialogRef = this.dialog.open(StudentModalComponent, {
       width: '400px',
       data: { type: 'subject', title: 'Manage Subjects', student }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        if (result.action === 'add') {
+          this.studentsService.putSubjectStudent(student.id).subscribe(data => {
+            const index = this.students.findIndex(s => s.id === student.id);
+            if (index !== -1) {
+              this.students[index] = data;
+            }
+          });
+        } else if (result.action === 'delete') {
+          this.studentsService.deleteSubjectStudent(student.id).subscribe(data => {
+            const index = this.students.findIndex(s => s.id === student.id);
+            if (index !== -1) {
+              this.students[index] = data;
+            }
+          });
+        }
+      }
     });
   }
 
   openExamModal(student: any) {
-    this.dialog.open(StudentModalComponent, {
+    const dialogRef = this.dialog.open(StudentModalComponent, {
       width: '400px',
       data: { type: 'exam', title: 'Manage Exams', student }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        if (result.action === 'add') {
+          this.studentsService.examStudent(student.id, result.score || 0).subscribe(data => {
+            const index = this.students.findIndex(s => s.id === student.id);
+            if (index !== -1) {
+              this.students[index] = data;
+            }
+          });
+        } else if (result.action === 'delete') {
+          this.studentsService.deleteExamStudent(student.id).subscribe(data => {
+            const index = this.students.findIndex(s => s.id === student.id);
+            if (index !== -1) {
+              this.students[index] = data;
+            }
+          });
+        }
+      }
     });
   }
 
   openPersonalityModal(student: any) {
-    this.dialog.open(StudentModalComponent, {
+    const dialogRef = this.dialog.open(StudentModalComponent, {
       width: '400px',
       data: { type: 'personality', title: 'Manage Personality', student }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        if (result.action === 'add') {
+          this.studentsService.addPersonality(student.id, result.personality || {}).subscribe(data => {
+            const index = this.students.findIndex(s => s.id === student.id);
+            if (index !== -1) {
+              this.students[index] = data;
+            }
+          });
+        } else if (result.action === 'delete') {
+          this.studentsService.deletePersonality(student.id).subscribe(data => {
+            const index = this.students.findIndex(s => s.id === student.id);
+            if (index !== -1) {
+              this.students[index] = data;
+            }
+          });
+        }
+      }
     });
   }
 } 

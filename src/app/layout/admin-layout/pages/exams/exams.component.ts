@@ -35,7 +35,17 @@ export class ExamsComponent {
   openAddExamModal() {
     const dialogRef = this.dialog.open(ExamModalComponent, {
       width: '400px',
-      data: { type: 'add', title: 'İmtahan Əlavə Et', exam: { name: '', date: '', maxScore: 100, description: '' } }
+      data: { 
+        type: 'add', 
+        title: 'İmtahan Əlavə Et', 
+        exam: { 
+          name: '', 
+          subjectId: null,
+          maxScore: 100, 
+          isBlockExam: false,
+          description: '' 
+        } 
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {

@@ -21,7 +21,7 @@ export class StudentsService {
     return this.http.post(`https://localhost:3001/api/Students`, student);
   }
   groupStudent(id: number): Observable<any> {
-    return this.http.put(`https://localhost:3001/api/Students/group/${id}`, null);
+    return this.http.patch(`https://localhost:3001/api/Students/group/${id}`, null);
   }
   putSubjectStudent(id: number): Observable<any> {
     return this.http.put(`https://localhost:3001/api/Students/subject/${id}`, null);
@@ -42,4 +42,7 @@ export class StudentsService {
     return this.http.delete(`https://localhost:3001/api/Students/personality/${id}`);
   }
   
+  deleteStudent(id: number): Observable<any> {
+    return this.http.delete(`https://localhost:3001/api/Students/${id}`);
+  }
 } 

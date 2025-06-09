@@ -39,9 +39,8 @@ export class SpecialitiesComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.speciality) {
-        this.specialities.push({
-          id: this.specialities.length + 1,
-          ...result.speciality
+        this.specialitiesService.addSpeciality(result.speciality).subscribe(data => {
+          this.specialities.push(data);
         });
       }
     });
@@ -55,15 +54,19 @@ export class SpecialitiesComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.speciality) {
-        const index = this.specialities.findIndex(s => s.id === speciality.id);
-        if (index !== -1) {
-          this.specialities[index] = { ...this.specialities[index], ...result.speciality };
-        }
+        this.specialitiesService.updateSpeciality(speciality.id, result.speciality).subscribe(data => {
+          const index = this.specialities.findIndex(s => s.id === speciality.id);
+          if (index !== -1) {
+            this.specialities[index] = data;
+          }
+        });
       }
     });
   }
 
   deleteSpeciality(id: number) {
-    this.specialities = this.specialities.filter(s => s.id !== id);
+    this.specialitiesService.deleteSpeciality(id).subscribe(() => {
+      this.specialities = this.specialities.filter(s => s.id !== id);
+    });
   }
 } 

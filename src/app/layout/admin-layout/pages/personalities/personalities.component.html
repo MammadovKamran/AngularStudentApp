@@ -1,11 +1,11 @@
 <div class="personalities-container">
-    <h1>Şəxsiyyət Tipleri</h1>
+    <h1>Şəxsiyyət Tipləri</h1>
     <div class="content">
         <div class="card">
-            <h2>Şəxsiyyət Tipleri Siyahısı</h2>
+            <h2>Şəxsiyyət Tipləri Siyahısı</h2>
             <div class="add-personality-row">
               <button mat-raised-button color="primary" (click)="openAddPersonalityModal()">
-                <mat-icon>add_circle</mat-icon> Kişilik Tipi əlavə et
+                <mat-icon>add_circle</mat-icon> Şəxsiyyət Tipi əlavə et
               </button>
             </div>
             <table class="personalities-table">
@@ -19,7 +19,7 @@
                 <tbody>
                     <tr *ngFor="let personality of personalities">
                         <td>{{ personality.id }}</td>
-                        <td>{{ personality.name }}</td>
+                        <td>{{ personality.type }}</td>
                         <td>
                           <div class="action-buttons">
                             <button mat-icon-button color="primary" matTooltip="Düzenle" (click)="editPersonality(personality)">
