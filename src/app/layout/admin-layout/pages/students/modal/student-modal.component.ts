@@ -26,7 +26,11 @@ export class StudentModalComponent {
     this.dialogRef.close();
   }
 
-  save(): void {
-    this.dialogRef.close({ student: this.data.student });
+  save(action?: string): void {
+    if (action) {
+      this.dialogRef.close({ action, student: this.data.student });
+    } else {
+      this.dialogRef.close({ student: this.data.student });
+    }
   }
 } 

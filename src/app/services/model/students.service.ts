@@ -33,7 +33,7 @@ export class StudentsService {
     return this.http.post(`https://localhost:3001/api/Students/exam/${id}/score/${score}`, null);
   }
   deleteExamStudent(id: number): Observable<any> {
-    return this.http.delete(`https://localhost:3001/api/Students/exam/{id}`);
+    return this.http.delete(`https://localhost:3001/api/Students/exam/${id}`);
   }
   addPersonality(id: number, personality: any): Observable<any> {
     return this.http.post(`https://localhost:3001/api/Students/personality/${id}`, personality);

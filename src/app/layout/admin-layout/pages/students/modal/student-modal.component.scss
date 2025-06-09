@@ -5,4 +5,15 @@
 
 [mat-dialog-actions] {
   margin-top: 24px;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+  justify-content: flex-end;
+}
+
+textarea {
+  min-height: 100px;
 } 

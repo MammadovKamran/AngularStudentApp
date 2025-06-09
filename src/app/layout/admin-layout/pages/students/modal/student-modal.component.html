@@ -1,6 +1,6 @@
 <h2 mat-dialog-title>{{ data.title }}</h2>
 <div mat-dialog-content>
-  <!-- İşlem türüne göre form alanları burada dinamik olarak gösterilecek -->
+  <!-- Add/Edit Student Form -->
   <div *ngIf="data.type === 'add' || data.type === 'edit'">
     <mat-form-field appearance="fill">
       <mat-label>Name</mat-label>
@@ -10,18 +10,62 @@
       <mat-label>Surname</mat-label>
       <input matInput [(ngModel)]="data.student.lastName">
     </mat-form-field>
-    <!-- <mat-form-field appearance="fill">
-      <mat-label>Group</mat-label>
-      <input matInput [(ngModel)]="data.student.group">
-    </mat-form-field> -->
-    <!-- <mat-form-field appearance="fill">
-      <mat-label>Budget</mat-label>
-      <input matInput type="number" [(ngModel)]="data.student.budget">
-    </mat-form-field> -->
   </div>
-  <!-- Diğer işlemler için de benzer şekilde alanlar eklenebilir -->
+
+  <!-- Group Assignment Form -->
+  <div *ngIf="data.type === 'group'">
+    <mat-form-field appearance="fill">
+      <mat-label>Group</mat-label>
+      <input matInput [(ngModel)]="data.student.groupId">
+    </mat-form-field>
+  </div>
+
+  <!-- Budget Update Form -->
+  <div *ngIf="data.type === 'budget'">
+    <mat-form-field appearance="fill">
+      <mat-label>Budget Amount</mat-label>
+      <input matInput type="number" [(ngModel)]="data.student.budget">
+    </mat-form-field>
+  </div>
+
+  <!-- Subject Management Form -->
+  <div *ngIf="data.type === 'subject'">
+    <mat-form-field appearance="fill">
+      <mat-label>Subject Name</mat-label>
+      <input matInput [(ngModel)]="data.student.subject">
+    </mat-form-field>
+    <div class="action-buttons">
+      <button mat-raised-button color="primary" (click)="save('add')">Add Subject</button>
+      <button mat-raised-button color="warn" (click)="save('delete')">Remove Subject</button>
+    </div>
+  </div>
+
+  <!-- Exam Management Form -->
+  <div *ngIf="data.type === 'exam'">
+    <mat-form-field appearance="fill">
+      <mat-label>Exam Score</mat-label>
+      <input matInput type="number" [(ngModel)]="data.student.score">
+    </mat-form-field>
+    <div class="action-buttons">
+      <button mat-raised-button color="primary" (click)="save('add')">Add Exam</button>
+      <button mat-raised-button color="warn" (click)="save('delete')">Remove Exam</button>
+    </div>
+  </div>
+
+  <!-- Personality Management Form -->
+  <div *ngIf="data.type === 'personality'">
+    <mat-form-field appearance="fill">
+      <mat-label>Personality Traits</mat-label>
+      <textarea matInput [(ngModel)]="data.student.personality" rows="4"></textarea>
+    </mat-form-field>
+    <div class="action-buttons">
+      <button mat-raised-button color="primary" (click)="save('add')">Add Personality</button>
+      <button mat-raised-button color="warn" (click)="save('delete')">Remove Personality</button>
+    </div>
+  </div>
 </div>
 <div mat-dialog-actions align="end">
   <button mat-button (click)="close()">Cancel</button>
-  <button mat-raised-button color="primary" (click)="save()">Save</button>
+  <button *ngIf="data.type !== 'subject' && data.type !== 'exam' && data.type !== 'personality'" 
+          mat-raised-button color="primary" (click)="save()">Save</button>
 </div> 
