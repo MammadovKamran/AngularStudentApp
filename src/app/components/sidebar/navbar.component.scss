@@ -33,6 +33,20 @@
           background-color: #34495e;
         }
       }
+
+      &.logout-btn {
+        margin-top: auto;
+        background-color: #e74c3c;
+        border-radius: 6px;
+        padding: 12px 24px;
+        color: white;
+        font-weight: 600;
+        transition: 0.2s;
+
+        &:hover {
+          background-color: #c0392b;
+        }
+      }
     }
   }
 }

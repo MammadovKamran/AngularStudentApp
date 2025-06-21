@@ -10,20 +10,23 @@ import { SpecialitiesComponent } from './layout/admin-layout/pages/specialities/
 import { SubjectsComponent } from './layout/admin-layout/pages/subjects/subjects.component';
 import { ExamsComponent } from './layout/admin-layout/pages/exams/exams.component';
 import { UniversitiesComponent } from './layout/admin-layout/pages/universities/universities.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
     path: "",
     children: [
+      {path: "", redirectTo: "home", pathMatch: "full"},
       {path: "login", component: LoginComponent},
       {path: "register", component: RegisterComponent},
-      {path: "home", component: HomeComponent}
+      {path: "home", component: HomeComponent, canActivate: [AuthGuard]}
     ]
   },
   
   {
     path: "admin",
     component: AdminLayoutComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: "students",

@@ -5,17 +5,27 @@ import { ModalPersonalitiesComponent } from '../../components/modal/modal-person
 import { ModalSpecialitiesComponent } from '../../components/modal/modal-specialities/modal-specialities.component';
 import { ModalSubjectsComponent } from '../../components/modal/modal-subjects/modal-subjects.component';
 import { ModalBudgetComponent } from '../../components/modal/modal-budget/modal-budget.component';
+import { AuthService } from '../../services/model/auth.service';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
-  constructor(public router: Router, private dialog: MatDialog) { }
-
+  constructor(
+    public router: Router, 
+    private dialog: MatDialog,
+    private authService: AuthService
+  ) { }
 
   public navigate(path: string): void {
     this.router.navigate([path]);
+  }
+
+  logout(): void {
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 
   openModal(type: string) {

@@ -2,7 +2,7 @@ import { AuthService } from './../../services/model/auth.service';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -13,13 +13,14 @@ import { RouterModule } from '@angular/router';
 })
 export class RegisterComponent {
   frm: FormGroup;
-  constructor(private formBuilder: FormBuilder, private authService: AuthService) {
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
     this.initializeForm();
   }
   initializeForm(registerModel: any = {}) {
     this.frm = this.formBuilder.group({
       email: [registerModel.email || "", [Validators.required, Validators.email]],
       password: [registerModel.password || "", [Validators.required, Validators.minLength(6)]],
+      confirmPassword: [registerModel.confirmPassword || "", [Validators.required]]
     }, {
       validators: this.passwordMatchValidator
     });
@@ -52,9 +53,20 @@ export class RegisterComponent {
 
   RegisterSubmit() {
     if (this.frm.valid) {
-      this.authService.register(this.frm.value).subscribe(response => {
-        console.log(response,"register");
+  
+      this.authService.register(this.frm.value).subscribe({
+        next: (response) => {
+          console.log(response, "register");
+          this.router.navigate(['/login']);
+        },
+        error: (error) => {
+          console.error('Registration failed:', error);
+        },
+        complete: () => {
+          console.log("Registration failed");
+        }
       });
     }
   }
+  
 }

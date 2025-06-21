@@ -1,4 +1,6 @@
 export class LoginModel{
     email : string;
-    password : number;
+    password : string;
+    twoFactorCode : boolean;
+    twoFactorRecoveryCode : boolean;
 }
